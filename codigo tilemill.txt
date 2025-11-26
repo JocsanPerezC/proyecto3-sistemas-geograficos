@@ -1,0 +1,221 @@
+/* -------------------------------------------------------
+   Tibás – pendiente base (zoom de detalle)
+   ------------------------------------------------------- */
+#tibasslope[zoom>=11][zoom<=18] {
+  raster-opacity: 0.95;
+  raster-scaling: bilinear;
+}
+
+/* Cantón Tibás: borde + NOMBRE TIBÁS */
+#geocantonestibas[zoom>=11][zoom<=18] {
+  polygon-opacity: 0;
+  line-color: #000000;
+  line-width: 1.8;
+}
+
+/* Solo etiqueta el cantón TIBÁS */
+#geocantonestibas[zoom>=12][zoom<=18][NCANTON="TIBAS"] {
+  text-name: [NCANTON];           /* "TIBAS" */
+  text-size: 14;
+  text-fill: #000000;
+  text-face-name: "DejaVu Sans Bold";
+  text-halo-fill: #ffffff;
+  text-halo-radius: 2.0;
+  text-placement: point;
+  text-min-distance: 5;
+}
+
+/* Distritos SOLO del cantón Tibás */
+#geodistritostibas[zoom>=13][zoom<=18][NCANTON="TIBAS"] {
+  polygon-opacity: 0;
+  line-color: #666666;
+  line-width: 0.7;
+  line-dasharray: 2,2;
+
+  text-name: [NDISTRITO];
+  text-size: 10;
+  text-fill: #222222;
+  text-face-name: "DejaVu Sans Oblique";
+  text-halo-fill: #ffffff;
+  text-halo-radius: 1.0;
+  text-placement: point;
+  text-min-distance: 10;
+}
+
+/* ===================================================
+   RÍOS DENTRO DE TIBÁS
+   =================================================== */
+#georiostibas[zoom>=14][zoom<=18] {
+  line-color: #2b8cbe;
+  line-width: 0.8;
+  line-opacity: 0.95;
+
+  text-name: [NOMBRE];
+  text-placement: line;
+  text-size: 9;
+  text-fill: #084594;
+  text-face-name: "DejaVu Sans Book";
+  text-halo-fill: #ffffff;
+  text-halo-radius: 1.0;
+  text-min-distance: 40;
+}
+
+/* ===================================================
+   CARRETERAS NACIONALES (shapefile del curso)
+   =================================================== */
+
+/* Todas las carreteras nacionales en Tibás */
+#geocarretertibas[zoom>=14][zoom<=18] {
+  line-color: #777777;
+  line-width: 0.9;
+  line-opacity: 0.95;
+
+  text-name: [CODIGO];      /* N 5, N 102, etc. */
+  text-placement: line;
+  text-size: 9;
+  text-fill: #222222;
+  text-face-name: "DejaVu Sans Book";
+  text-halo-fill: #ffffff;
+  text-halo-radius: 1.0;
+  text-min-distance: 40;
+}
+
+/* Nacionales dentro de Tibás más marcadas */
+#geocarretertibas[zoom>=14][zoom<=18][TIPO="CARRETERA NACIONAL"] {
+  line-color: #e41a1c;
+  line-width: 1.3;
+}
+
+/* ===================================================
+   CAPAS OSM: PARQUES, CALLES Y PUNTOS
+   =================================================== */
+
+/* ------------ PARQUES / ZONAS VERDES (polígonos) --- */
+/* Capa: tibas_parques_osm */
+#tibas_parques_osm[zoom>=14] {
+  polygon-fill: #8dd3c7;
+  polygon-opacity: 0.5;
+
+  line-color: #1b7837;
+  line-width: 0.8;
+  line-opacity: 0.9;
+}
+
+/* ------------ CALLES OSM (líneas) ------------------- */
+/* Capa: tibas_calles_osm */
+
+/* Base: todas las vías */
+#tibas_calles_osm[zoom>=13] {
+  line-color: #bbbbbb;
+  line-width: 0.5;
+  line-opacity: 0.7;
+}
+
+/* Primarias */
+#tibas_calles_osm[zoom>=13][highway="primary"],
+#tibas_calles_osm[zoom>=13][highway="trunk"] {
+  line-color: #f16913;
+  line-width: 1.6;
+}
+
+/* Secundarias y terciarias */
+#tibas_calles_osm[zoom>=13][highway="secondary"],
+#tibas_calles_osm[zoom>=13][highway="tertiary"] {
+  line-color: #fd8d3c;
+  line-width: 1.2;
+}
+
+/* Calles residenciales y unclassified */
+#tibas_calles_osm[zoom>=14][highway="residential"],
+#tibas_calles_osm[zoom>=14][highway="unclassified"] {
+  line-color: #cccccc;
+  line-width: 0.9;
+}
+
+/* Calles de servicio y estacionamientos */
+#tibas_calles_osm[zoom>=15][highway="service"] {
+  line-color: #dddddd;
+  line-width: 0.7;
+}
+
+/* Vías peatonales / ciclovías / senderos */
+#tibas_calles_osm[zoom>=15][highway="footway"],
+#tibas_calles_osm[zoom>=15][highway="path"],
+#tibas_calles_osm[zoom>=15][highway="cycleway"],
+#tibas_calles_osm[zoom>=15][highway="living_street"],
+#tibas_calles_osm[zoom>=15][highway="pedestrian"] {
+  line-color: #99cfff;
+  line-width: 0.7;
+  line-dasharray: 2,2;
+}
+
+/* ------------ PUNTOS OSM (POIs) --------------------- */
+/* Capa: tibaspois  (puntos) */
+
+/* Símbolo base para todos los POIs */
+#tibaspois[zoom>=14] {
+  marker-width: 4;
+  marker-fill: #555555;
+  marker-line-color: #ffffff;
+  marker-line-width: 0.5;
+  marker-allow-overlap: true;
+}
+
+/* Escuelas / colegios / universidades */
+#tibaspois[zoom>=14][amenity="school"],
+#tibaspois[zoom>=14][amenity="kindergarten"],
+#tibaspois[zoom>=14][amenity="college"],
+#tibaspois[zoom>=14][amenity="university"] {
+  marker-width: 6;
+  marker-fill: #377eb8;      /* azul */
+  marker-line-color: #ffffff;
+  marker-line-width: 1;
+}
+
+/* Salud: hospital / clínica / doctores / farmacia */
+#tibaspois[zoom>=14][amenity="hospital"],
+#tibaspois[zoom>=14][amenity="clinic"],
+#tibaspois[zoom>=14][amenity="doctors"],
+#tibaspois[zoom>=14][amenity="dentist"],
+#tibaspois[zoom>=14][amenity="pharmacy"] {
+  marker-width: 6;
+  marker-fill: #e41a1c;      /* rojo */
+  marker-line-color: #ffffff;
+  marker-line-width: 1;
+}
+
+/* Gasolineras */
+#tibaspois[zoom>=14][amenity="fuel"] {
+  marker-width: 6;
+  marker-fill: #ff7f00;      /* naranja */
+  marker-line-color: #ffffff;
+  marker-line-width: 1;
+}
+
+/* Bancos y cajeros */
+#tibaspois[zoom>=14][amenity="bank"],
+#tibaspois[zoom>=14][amenity="atm"] {
+  marker-width: 6;
+  marker-fill: #984ea3;      /* morado */
+  marker-line-color: #ffffff;
+  marker-line-width: 1;
+}
+
+/* Comercios en general (cualquier shop) */
+#tibaspois[zoom>=15][shop!=""] {
+  marker-width: 4;
+  marker-fill: #ffcc00;      /* amarillo */
+  marker-line-color: #ffffff;
+  marker-line-width: 1;
+}
+
+/* Etiqueta con el nombre para los POIs más importantes */
+#tibaspois[zoom>=17][name!=""] {
+  text-name: [name];
+  text-size: 9;
+  text-fill: #000000;
+  text-face-name: "DejaVu Sans Book";
+  text-halo-fill: #ffffff;
+  text-halo-radius: 1.2;
+  text-dy: -8;
+}
