@@ -1,0 +1,189 @@
+{
+  "bounds": [
+    -180,
+    -85.05112877980659,
+    180,
+    85.05112877980659
+  ],
+  "center": [
+    0,
+    0,
+    2
+  ],
+  "format": "png",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 22,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "style.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "raster",
+      "extent": [
+        -84.106772459,
+        9.941388044,
+        -84.0550878485,
+        9.972278696
+      ],
+      "id": "tibasslope",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_slope.tif"
+      },
+      "srs-name": "WGS84",
+      "srs": "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs",
+      "advanced": {},
+      "name": "tibasslope"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -84.10709801047226,
+        9.940743979731236,
+        -84.05507083052224,
+        9.972658733096088
+      ],
+      "id": "geoprovinciastibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\geoprovincias_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "geoprovinciastibas"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -84.10709801047226,
+        9.940743979731236,
+        -84.05507083052224,
+        9.972658733096088
+      ],
+      "id": "geodistritostibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\geodistritos_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "geodistritostibas"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -84.10709801047226,
+        9.940743979731236,
+        -84.05507083052224,
+        9.972658733096088
+      ],
+      "id": "geocantonestibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\geocantones_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "geocantonestibas"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        -84.08890648365089,
+        9.94156897262747,
+        -84.05508011995519,
+        9.972642087367182
+      ],
+      "id": "geocarretertibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\geocarreter_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "geocarretertibas"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        -84.10653239585378,
+        9.94089674358701,
+        -84.08040754585755,
+        9.970839259200277
+      ],
+      "id": "georiostibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\georios_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "georiostibas"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        -84.1048632,
+        9.9426658,
+        -84.0595009,
+        9.9684718
+      ],
+      "id": "tibaspois",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_pois.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "tibaspois"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -84.1037174,
+        9.9390899,
+        -84.0613551,
+        9.9673163
+      ],
+      "id": "tibasparquesosm",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_parques_osm.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "tibasparquesosm"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        -84.1057724,
+        9.9403807,
+        -84.0544141,
+        9.9724119
+      ],
+      "id": "tibascallesosm",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_calles_osm.geojson"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "tibascallesosm"
+    }
+  ],
+  "scale": 1,
+  "metatile": 2,
+  "name": "",
+  "description": ""
+}

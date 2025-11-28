@@ -185,7 +185,7 @@ Capas cargadas:
 
 ## 7. Publicación del mapa final
 - Exportación **MBTiles** desde TileMill  
-- Publicación en **GitHub Pages / Netlify / Vercel**  
+- Publicación en **Vercel**  
 - Creación de `index.html` para visualización web  
 
 ---

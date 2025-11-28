@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Mapa de Tibás – Pendiente y POIs</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    #map {
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .info-box {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 8px 12px;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      max-width: 260px;
+    }
+    .info-box h1 {
+      font-size: 15px;
+      margin: 0 0 4px 0;
+    }
+    .info-box p {
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .attribution-extra {
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+
+  <!-- Caja de info fija (solo texto, no datos vectoriales) -->
+  <div class="info-box">
+    <h1>Tibás, Costa Rica</h1>
+    <p>
+      Mapa de pendiente, carreteras y puntos de interés (poblados, escuelas,
+      salud, bancos, comercios, etc.) generado en TileMill a partir de los
+      datos del curso y OSM. Todas las capas están integradas como teselas
+      ráster.
+    </p>
+  </div>
+
+  <script>
+    // Centro aproximado de Tibás
+    var center = [9.96, -84.08];
+
+    var map = L.map("map", {
+      center: center,
+      zoom: 13,
+      minZoom: 11,
+      maxZoom: 22,
+      zoomControl: true
+    });
+
+    // Capa de teselas raster exportadas desde TileMill.
+    // Asegúrate de que la carpeta "tiles" esté al lado de este index.html
+    L.tileLayer("tiles/{z}/{x}/{y}.png", {
+      minZoom: 11,
+      maxZoom: 22,
+      attribution:
+        'Mapa generado en TileMill · Datos: curso Sistemas Geográficos &amp; OpenStreetMap'
+    }).addTo(map);
+  </script>
+</body>
+</html>
