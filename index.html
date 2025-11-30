@@ -31,12 +31,13 @@
       height: 100vh;
     }
 
+    /* Caja de info general */
     .info-box {
       position: absolute;
       top: 10px;
       left: 10px;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
       padding: 8px 12px;
       border-radius: 4px;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
@@ -53,23 +54,266 @@
       line-height: 1.3;
     }
 
+    /* Panel de leyenda */
+    .legend-panel {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.97);
+      padding: 8px 10px;
+      border-radius: 4px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      max-width: 320px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .legend-panel h2 {
+      font-size: 13px;
+      margin: 0 0 4px 0;
+    }
+    .legend-panel h3 {
+      font-size: 12px;
+      margin: 6px 0 3px 0;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 2px;
+    }
+
+    .legend-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 6px;
+    }
+    .legend-table th,
+    .legend-table td {
+      padding: 3px 2px;
+      vertical-align: middle;
+    }
+    .legend-table th {
+      font-weight: bold;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .legend-symbol {
+      width: 50px;
+    }
+
+    /* Líneas de ejemplo */
+    .legend-line {
+      display: inline-block;
+      width: 42px;
+      border-top-width: 3px;
+      border-top-style: solid;
+      border-top-color: #000;
+    }
+    .legend-line.thin {
+      border-top-width: 2px;
+    }
+    .legend-line.dashed {
+      border-top-style: dashed;
+    }
+
+    /* Caja para polígonos (parques) */
+    .legend-box {
+      display: inline-block;
+      width: 18px;
+      height: 12px;
+      border: 1px solid #1b7837;
+      background: #8dd3c7;
+    }
+
+    /* Íconos de puntos */
+    .legend-icon {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
     .attribution-extra {
       font-size: 10px;
+      margin-top: 4px;
+      color: #666;
     }
   </style>
 </head>
 <body>
   <div id="map"></div>
 
-  <!-- Caja de info fija (solo texto, no datos vectoriales) -->
+  <!-- Caja de info fija (texto general) -->
   <div class="info-box">
     <h1>Tibás, Costa Rica</h1>
     <p>
-      Mapa de pendiente, carreteras y puntos de interés (poblados, escuelas,
-      salud, bancos, comercios, etc.) generado en TileMill a partir de los
-      datos del curso y OSM. Todas las capas están integradas como teselas
-      ráster.
+      Mapa de pendiente, red vial, ríos y puntos de
+      interés (escuelas, salud, bancos, comercios, etc.) generado en
+      TileMill a partir de datos del curso y OpenStreetMap.
     </p>
+  </div>
+
+  <!-- Panel de leyenda -->
+  <div class="legend-panel">
+    <h2>Leyenda</h2>
+
+    <h3>Líneas y áreas</h3>
+    <table class="legend-table">
+      <tr>
+        <th class="legend-symbol">Símbolo</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span class="legend-line" style="border-top-color:#000000;"></span>
+        </td>
+        <td>Límite del cantón de Tibás</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin dashed"
+            style="border-top-color:#666666;"
+          ></span>
+        </td>
+        <td>Límites de distrito</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#2b8cbe;"
+          ></span>
+        </td>
+        <td>Ríos</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line"
+            style="border-top-color:#e41a1c;"
+          ></span>
+        </td>
+        <td>Carreteras nacionales principales (N)</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#777777;"
+          ></span>
+        </td>
+        <td>Otras carreteras nacionales</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#f16913;"
+          ></span>
+        </td>
+        <td>Vías primarias / trunk (OSM)</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#fd8d3c;"
+          ></span>
+        </td>
+        <td>Vías secundarias / terciarias (OSM)</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#cccccc;"
+          ></span>
+        </td>
+        <td>Calles residenciales / unclassified</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin"
+            style="border-top-color:#dddddd;"
+          ></span>
+        </td>
+        <td>Calles de servicio / estacionamientos</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span
+            class="legend-line thin dashed"
+            style="border-top-color:#99cfff;"
+          ></span>
+        </td>
+        <td>
+          Vías peatonales, ciclovías, senderos
+        </td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <span class="legend-box"></span>
+        </td>
+        <td>Parques y zonas verdes</td>
+      </tr>
+    </table>
+
+    <h3>Puntos de interés</h3>
+    <table class="legend-table">
+      <tr>
+        <th class="legend-symbol">Símbolo</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/poblado.png" alt="Poblado" class="legend-icon" />
+        </td>
+        <td>Poblados / barrios</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/school.png" alt="Escuela" class="legend-icon" />
+        </td>
+        <td>Escuelas, colegios, universidades</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/hospital.png" alt="Hospital" class="legend-icon" />
+        </td>
+        <td>Hospitales</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/clinic.png" alt="Clínica" class="legend-icon" />
+        </td>
+        <td>Clínicas, consultorios, dentistas, farmacias</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/fuel.png" alt="Gasolinera" class="legend-icon" />
+        </td>
+        <td>Gasolineras</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/bank.png" alt="Banco" class="legend-icon" />
+        </td>
+        <td>Bancos y cajeros automáticos</td>
+      </tr>
+      <tr>
+        <td class="legend-symbol">
+          <img src="icons/shop.png" alt="Comercio" class="legend-icon" />
+        </td>
+        <td>Comercios en general (shop≠vacío)</td>
+      </tr>
+    </table>
+
+    <div class="attribution-extra">
+      Símbolos y colores corresponden a la simbología definida en el proyecto
+      de TileMill.
+    </div>
   </div>
 
   <script>
@@ -78,19 +322,19 @@
 
     var map = L.map("map", {
       center: center,
-      zoom: 13,
-      minZoom: 11,
+      zoom: 12,
+      minZoom: 12,
       maxZoom: 22,
       zoomControl: true
     });
 
-    // Capa de teselas raster exportadas desde TileMill.
-    // Asegúrate de que la carpeta "tiles" esté al lado de este index.html
+
+    // Capa de teselas raster exportadas desde TileMill
     L.tileLayer("tiles/{z}/{x}/{y}.png", {
-      minZoom: 11,
+      minZoom: 12,
       maxZoom: 22,
       attribution:
-        'Mapa generado en TileMill · Datos: curso Sistemas Geográficos &amp; OpenStreetMap'
+        "Mapa generado en TileMill · Datos: curso Sistemas Geográficos &amp; OpenStreetMap"
     }).addTo(map);
   </script>
 </body>

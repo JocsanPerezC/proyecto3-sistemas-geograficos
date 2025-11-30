@@ -1,18 +1,18 @@
 {
   "bounds": [
-    -180,
-    -85.05112877980659,
-    180,
-    85.05112877980659
+    -84.1081,
+    9.9394,
+    -84.0519,
+    9.9739
   ],
   "center": [
-    0,
-    0,
-    2
+    -84.081,
+    9.9581,
+    14
   ],
   "format": "png",
   "interactivity": false,
-  "minzoom": 0,
+  "minzoom": 12,
   "maxzoom": 22,
   "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
   "Stylesheet": [
@@ -76,6 +76,24 @@
     {
       "geometry": "polygon",
       "extent": [
+        -84.1037174,
+        9.9390899,
+        -84.0613551,
+        9.9673163
+      ],
+      "id": "tibasparquesosm",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_parques_osm.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "tibasparquesosm"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
         -84.10709801047226,
         9.940743979731236,
         -84.05507083052224,
@@ -90,6 +108,24 @@
       "srs": "",
       "advanced": {},
       "name": "geocantonestibas"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        -84.10653239585378,
+        9.94089674358701,
+        -84.08040754585755,
+        9.970839259200277
+      ],
+      "id": "georiostibas",
+      "class": "",
+      "Datasource": {
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\georios_tibas.shp"
+      },
+      "srs-name": "autodetect",
+      "srs": "",
+      "advanced": {},
+      "name": "georiostibas"
     },
     {
       "geometry": "linestring",
@@ -112,20 +148,23 @@
     {
       "geometry": "linestring",
       "extent": [
-        -84.10653239585378,
-        9.94089674358701,
-        -84.08040754585755,
-        9.970839259200277
+        -84.1057724,
+        9.9403807,
+        -84.0544141,
+        9.9724119
       ],
-      "id": "georiostibas",
+      "id": "tibascallesosm",
       "class": "",
       "Datasource": {
-        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\Geo_CR\\georios_tibas.shp"
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_calles_osm.geojson",
+        "id": "tibascallesosm",
+        "project": "proyecto3",
+        "srs": ""
       },
       "srs-name": "autodetect",
       "srs": "",
       "advanced": {},
-      "name": "georiostibas"
+      "name": "tibascallesosm"
     },
     {
       "geometry": "point",
@@ -138,52 +177,17 @@
       "id": "tibaspois",
       "class": "",
       "Datasource": {
-        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_pois.shp"
+        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibaspois.geojson"
       },
       "srs-name": "autodetect",
       "srs": "",
       "advanced": {},
       "name": "tibaspois"
-    },
-    {
-      "geometry": "polygon",
-      "extent": [
-        -84.1037174,
-        9.9390899,
-        -84.0613551,
-        9.9673163
-      ],
-      "id": "tibasparquesosm",
-      "class": "",
-      "Datasource": {
-        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_parques_osm.shp"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "tibasparquesosm"
-    },
-    {
-      "geometry": "linestring",
-      "extent": [
-        -84.1057724,
-        9.9403807,
-        -84.0544141,
-        9.9724119
-      ],
-      "id": "tibascallesosm",
-      "class": "",
-      "Datasource": {
-        "file": "v:\\Documentos\\Geograficos\\proyecto3-sistemas-geograficos\\tibas_calles_osm.geojson"
-      },
-      "srs-name": "autodetect",
-      "srs": "",
-      "advanced": {},
-      "name": "tibascallesosm"
     }
   ],
   "scale": 1,
   "metatile": 2,
-  "name": "",
-  "description": ""
+  "name": "proyecto3",
+  "description": "",
+  "attribution": ""
 }
