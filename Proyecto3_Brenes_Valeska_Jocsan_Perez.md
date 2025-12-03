@@ -1,4 +1,15 @@
-# Datos y Métodos – Proyecto 3 (Tibás)
+# Proyecto 3 – Mapa en Mosaico del Cantón de Tibás  
+**Curso:** IC8017 – Sistemas de Información Geográfica  
+**Instituto Tecnológico de Costa Rica**
+
+- **Jocsan Pérez Coto, 2022437948**  
+- **Valeska Brenes, 2021031484**
+
+## Enlace de publicación del mapa  
+Nuestro mapa final está publicado en:  
+**[https://<enlace-del-mapa>.vercel.app](https://proyecto3-sistemas-geograficos.vercel.app)**  
+
+
 
 ## 0. Cantón de estudio
 Este proyecto se desarrolló para el cantón de **Tibás**, en la provincia de San José, Costa Rica.
@@ -50,70 +61,71 @@ Todas fueron exportadas de GeoJSON a Shapefile usando GDAL.
 - **Overpass Turbo** – descarga OSM  
 - **TileMill** – diseño y exportación del mapa (MBTiles)
 
+Todos los comandos se realizaron desde el CMD de windows y utilizando el programa de gdal con la dirección de la carpeta de bin, por ejemplo: ```C:\Users\Admin\Downloads\gdal\bin```.
+
 ---
 
 ## 3. Procesamiento del relieve y generación de pendiente
 
+Generamos la capa de pendiente que usamos como imagen base del mapa.
+
 ### 3.1 Cálculo de la pendiente nacional
-```bash
-gdaldem slope ^
-  DEM.tif ^
-  slope_dem.tif ^
-  -s 1.0 -compute_edges -of GTiff
-```
+``` 
+gdaldem slope DEM.tif slope_dem.tif -s 1.0 -compute_edges -of GTiff
+ ```
 
 ### 3.2 Recorte de pendiente a Costa Rica
-```bash
-gdalwarp ^
-  -cutline geocantones.shp ^
-  -crop_to_cutline -dstnodata -9999 ^
-  slope_dem.tif ^
-  crslope.tif
+```
+gdalwarp -cutline geocantones.shp -crop_to_cutline -dstnodata -9999 slope_dem.tif crslope.tif
 ```
 
 ### 3.3 Recorte final para Tibás
-```bash
-gdalwarp ^
-  -cutline tibas_canton.shp ^
-  -crop_to_cutline -dstnodata -9999 ^
-  crslope.tif ^
-  tibasslope.tif
+```
+gdalwarp -cutline tibas_canton.shp -crop_to_cutline -dstnodata -9999 crslope.tif tibasslope.tif
 ```
 
 ---
 
 ## 4. Recortes vectoriales del cantón Tibás
 
+
 ### 4.1 Provincias
-```bash
+```
 ogr2ogr -clipsrc tibas_canton.shp geoprovinciastibas.shp geoprovincias.shp
 ```
 
 ### 4.2 Cantones
-```bash
+```
 ogr2ogr -clipsrc tibas_canton.shp geocantonestibas.shp geocantones.shp
 ```
 
 ### 4.3 Distritos
-```bash
+```
 ogr2ogr -clipsrc tibas_canton.shp geodistritostibas.shp geodistritos.shp
 ```
 
 ### 4.4 Ríos
-```bash
+```
 ogr2ogr -clipsrc tibas_canton.shp georiostibas.shp georios.shp
 ```
 
 ### 4.5 Carreteras nacionales
-```bash
+```
 ogr2ogr -clipsrc tibas_canton.shp geocarretertibas.shp geocarreter.shp
 ```
+
+De esta manera obtuvimos todos los shp necesarios para utilizarlos en TileMill.
 
 ---
 
 ## 5. Descarga y preparación de datos OSM (Overpass Turbo)
 
 ### 5.1 Área de consulta
+
+Todas las consultas se hicieron juntas y se descargaron desde Overpass Turbo.
+Luego se hizo la conversión para poder utilizarlas.
+
+Zona de Tibas:
 ```txt
 [out:json][timeout:60];
 {{geocodeArea:"Tibas, San José, Costa Rica"}}->.searchArea;
@@ -126,7 +138,7 @@ way["highway"](area.searchArea);
 out geom;
 ```
 Conversión:
-```bash
+```
 ogr2ogr -f "ESRI Shapefile" tibas_calles_osm.shp tibas_calles_osm.geojson -nlt LINESTRING
 ```
 
@@ -137,7 +149,7 @@ nwr["leisure"](area.searchArea);
 out geom;
 ```
 Conversión:
-```bash
+```
 ogr2ogr -f "ESRI Shapefile" tibas_parques_osm.shp tibas_parques_osm.geojson -nlt POLYGON
 ```
 
@@ -153,7 +165,7 @@ out;
 ```
 
 Conversión:
-```bash
+```
 ogr2ogr -f "ESRI Shapefile" tibas_pois.shp tibas_pois.geojson -nlt POINT
 ```
 
