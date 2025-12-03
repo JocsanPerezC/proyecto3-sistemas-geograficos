@@ -7,8 +7,7 @@
 
 ## Enlace de publicación del mapa  
 Nuestro mapa final está publicado en:  
-**[https://<enlace-del-mapa>.vercel.app](https://proyecto3-sistemas-geograficos.vercel.app)**  
-
+**[https://proyecto3-sistemas-geograficos.vercel.app](https://proyecto3-sistemas-geograficos.vercel.app)**  
 
 
 ## 0. Cantón de estudio
@@ -18,7 +17,7 @@ Todo el procesamiento se trabajó en el sistema de referencia geográfica:
 
 - **WGS84 – EPSG:4326**
 
-Esto garantiza compatibilidad entre los datos del repositorio del curso y los datos provenientes de OpenStreetMap (OSM).
+Trabajamos con esta referencia para que hubiera compatibilidad entre los datos del curso y los datos provenientes de OpenStreetMap (OSM).
 
 ---
 
@@ -48,7 +47,7 @@ A partir de las capas nacionales se generaron recortes específicos del cantón:
 ### 1.3 Capas OSM obtenidas mediante Overpass Turbo
 Se descargaron datos actuales de OpenStreetMap:
 
-- `tibas_pois.shp` – POIs (amenity, shop, tourism)  
+- `tibas_pois.shp` – POIs (amenity, shop, gas)  
 - `tibas_calles_osm.shp` – red vial OSM  
 - `tibas_parques_osm.shp` – parques y áreas verdes  
 
@@ -159,7 +158,8 @@ Consulta:
 (
   node["amenity"](area.searchArea);
   node["shop"](area.searchArea);
-  node["tourism"](area.searchArea);
+  node["gas"](area.searchArea);
+  ...
 );
 out;
 ```
@@ -197,7 +197,14 @@ Capas cargadas:
 
 ## 7. Publicación del mapa final
 - Exportación **MBTiles** desde TileMill  
+Para realizar esta parte, en la aplicación de TileMill se exporto el proyecto como un archivo .mbtiles. Una vez con el archivo se tuvo que utilizar el siguiente comando para poder descomprimir el archivo con todas las carpetas de los zooms con sus respectivas imágenes:
+```
+python mb-util.py proyecto3.mbtiles tiles --image_format=png
+```
+
 - Publicación en **Vercel**  
+Esto se realiza muy fácilmente, unicamente subimos el repositorio a la pagina de vercel y ya el se compila y ejecuta automáticamente.
+
 - Creación de `index.html` para visualización web  
 
 ---
@@ -207,8 +214,8 @@ El mapa final integra:
 
 - Datos oficiales y datos OSM actualizados  
 - Recortes precisos del cantón  
-- Simbología profesional  
+- Índice con simbología  
 - Mosaico raster de pendiente  
 - Capas temáticas claras (carreteras, ríos, parques, POIs)
 
-Es un mapa mosaico completo, claro, funcional y listo para publicación web.
+Es un mapa mosaico completo, claro y funcional.
