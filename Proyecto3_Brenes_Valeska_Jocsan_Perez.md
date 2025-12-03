@@ -5,6 +5,9 @@
 - **Jocsan Pérez Coto, 2022437948**  
 - **Valeska Brenes, 2021031484**
 
+## Link del repositorio
+[https://github.com/JocsanPerezC/proyecto3-sistemas-geograficos.git](https://github.com/JocsanPerezC/proyecto3-sistemas-geograficos.git)
+
 ## Enlace de publicación del mapa  
 Nuestro mapa final está publicado en:  
 **[https://proyecto3-sistemas-geograficos.vercel.app](https://proyecto3-sistemas-geograficos.vercel.app)**  
