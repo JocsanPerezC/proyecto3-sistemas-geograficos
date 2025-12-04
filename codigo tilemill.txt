@@ -1,7 +1,7 @@
 /* -------------------------------------------------------
    Tibás – pendiente base (zoom de detalle)
    ------------------------------------------------------- */
-#tibasslope[zoom>=11][zoom<=18] {
+#tibasslope[zoom>=11][zoom<=22] {
   raster-opacity: 0.95;
   raster-scaling: bilinear;
 }
@@ -14,7 +14,7 @@
 }
 
 /* Solo etiqueta el cantón TIBÁS */
-#geocantonestibas[zoom>=12][zoom<=18][NCANTON="TIBAS"] {
+#geocantonestibas[zoom>=11][zoom<=12][NCANTON="TIBAS"] {
   text-name: [NCANTON];           /* "TIBAS" */
   text-size: 14;
   text-fill: #000000;
@@ -25,8 +25,9 @@
   text-min-distance: 5;
 }
 
+
 /* Distritos SOLO del cantón Tibás */
-#geodistritostibas[zoom>=13][zoom<=18][NCANTON="TIBAS"] {
+#geodistritostibas[zoom>=13][zoom<=15][NCANTON="TIBAS"] {
   polygon-opacity: 0;
   line-color: #666666;
   line-width: 0.7;
@@ -45,7 +46,7 @@
 /* ===================================================
    RÍOS DENTRO DE TIBÁS
    =================================================== */
-#georiostibas[zoom>=14][zoom<=18] {
+#georiostibas[zoom>=15][zoom<=18] {
   line-color: #2b8cbe;
   line-width: 0.8;
   line-opacity: 0.95;
@@ -65,7 +66,7 @@
    =================================================== */
 
 /* Todas las carreteras nacionales en Tibás */
-#geocarretertibas[zoom>=14][zoom<=18] {
+#geocarretertibas[zoom>=15][zoom<=18] {
   line-color: #777777;
   line-width: 0.9;
   line-opacity: 0.95;
@@ -81,7 +82,7 @@
 }
 
 /* Nacionales dentro de Tibás más marcadas */
-#geocarretertibas[zoom>=14][zoom<=18][TIPO="CARRETERA NACIONAL"] {
+#geocarretertibas[zoom>=15][zoom<=18][TIPO="CARRETERA NACIONAL"] {
   line-color: #e41a1c;
   line-width: 1.3;
 }
@@ -92,7 +93,7 @@
 
 /* ------------ PARQUES / ZONAS VERDES (polígonos) --- */
 /* Capa: tibas_parques_osm */
-#tibas_parques_osm[zoom>=14] {
+#tibasparquesosm[zoom>=15] {
   polygon-fill: #8dd3c7;
   polygon-opacity: 0.5;
 
@@ -105,45 +106,45 @@
 /* Capa: tibas_calles_osm */
 
 /* Base: todas las vías */
-#tibas_calles_osm[zoom>=13] {
+#tibascallesosm[zoom>=15] {
   line-color: #bbbbbb;
   line-width: 0.5;
   line-opacity: 0.7;
 }
 
 /* Primarias */
-#tibas_calles_osm[zoom>=13][highway="primary"],
-#tibas_calles_osm[zoom>=13][highway="trunk"] {
+#tibascallesosm[zoom>=14][highway="primary"],
+#tibascallesosm[zoom>=14][highway="trunk"] {
   line-color: #f16913;
   line-width: 1.6;
 }
 
 /* Secundarias y terciarias */
-#tibas_calles_osm[zoom>=13][highway="secondary"],
-#tibas_calles_osm[zoom>=13][highway="tertiary"] {
+#tibascallesosm[zoom>=15][highway="secondary"],
+#tibascallesosm[zoom>=15][highway="tertiary"] {
   line-color: #fd8d3c;
   line-width: 1.2;
 }
 
 /* Calles residenciales y unclassified */
-#tibas_calles_osm[zoom>=14][highway="residential"],
-#tibas_calles_osm[zoom>=14][highway="unclassified"] {
+#tibascallesosm[zoom>=16][highway="residential"],
+#tibascallesosm[zoom>=16][highway="unclassified"] {
   line-color: #cccccc;
   line-width: 0.9;
 }
 
 /* Calles de servicio y estacionamientos */
-#tibas_calles_osm[zoom>=15][highway="service"] {
+#tibascallesosm[zoom>=16][highway="service"] {
   line-color: #dddddd;
   line-width: 0.7;
 }
 
 /* Vías peatonales / ciclovías / senderos */
-#tibas_calles_osm[zoom>=15][highway="footway"],
-#tibas_calles_osm[zoom>=15][highway="path"],
-#tibas_calles_osm[zoom>=15][highway="cycleway"],
-#tibas_calles_osm[zoom>=15][highway="living_street"],
-#tibas_calles_osm[zoom>=15][highway="pedestrian"] {
+#tibascallesosm[zoom>=16][highway="footway"],
+#tibas_callesosm[zoom>=16][highway="path"],
+#tibascallesosm[zoom>=16][highway="cycleway"],
+#tibascallesosm[zoom>=16][highway="living_street"],
+#tibascallesosm[zoom>=16][highway="pedestrian"] {
   line-color: #99cfff;
   line-width: 0.7;
   line-dasharray: 2,2;
@@ -152,64 +153,82 @@
 /* ------------ PUNTOS OSM (POIs) --------------------- */
 /* Capa: tibaspois  (puntos) */
 
-/* Símbolo base para todos los POIs */
-#tibaspois[zoom>=14] {
-  marker-width: 4;
+/* Símbolo base para cualquier POI genérico */
+#tibaspois[zoom>=15] {
+  marker-width: 5;
   marker-fill: #555555;
   marker-line-color: #ffffff;
   marker-line-width: 0.5;
-  marker-allow-overlap: true;
+  marker-allow-overlap: false;   /* ayuda a que no se acumulen tanto */
 }
 
-/* Escuelas / colegios / universidades */
-#tibaspois[zoom>=14][amenity="school"],
-#tibaspois[zoom>=14][amenity="kindergarten"],
-#tibaspois[zoom>=14][amenity="college"],
-#tibaspois[zoom>=14][amenity="university"] {
-  marker-width: 6;
-  marker-fill: #377eb8;      /* azul */
-  marker-line-color: #ffffff;
-  marker-line-width: 1;
+/* ============================
+   POBLADOS (place = town, etc.)
+   ============================ */
+#tibaspois[zoom>=15][place="town"],
+#tibaspois[zoom>=15][place="village"],
+#tibaspois[zoom>=15][place="hamlet"],
+#tibaspois[zoom>=15][place="suburb"],
+#tibaspois[zoom>=15][place="neighbourhood"] {
+  marker-file: url("icons/poblado.png");
+  marker-width: 20;
 }
 
-/* Salud: hospital / clínica / doctores / farmacia */
-#tibaspois[zoom>=14][amenity="hospital"],
-#tibaspois[zoom>=14][amenity="clinic"],
-#tibaspois[zoom>=14][amenity="doctors"],
-#tibaspois[zoom>=14][amenity="dentist"],
-#tibaspois[zoom>=14][amenity="pharmacy"] {
-  marker-width: 6;
-  marker-fill: #e41a1c;      /* rojo */
-  marker-line-color: #ffffff;
-  marker-line-width: 1;
+/* ============================
+   EDUCACIÓN: escuelas / colegios / universidades
+   ============================ */
+#tibaspois[zoom>=15][amenity="school"],
+#tibaspois[zoom>=15][amenity="kindergarten"],
+#tibaspois[zoom>=15][amenity="college"],
+#tibaspois[zoom>=15][amenity="university"] {
+  marker-file: url("icons/school.png");   /* ícono de escuela */
+  marker-width: 20;
 }
 
-/* Gasolineras */
-#tibaspois[zoom>=14][amenity="fuel"] {
-  marker-width: 6;
-  marker-fill: #ff7f00;      /* naranja */
-  marker-line-color: #ffffff;
-  marker-line-width: 1;
+/* ============================
+   SALUD: hospitales
+   ============================ */
+#tibaspois[zoom>=15][amenity="hospital"] {
+  marker-file: url("icons/hospital.png"); /* ícono con cruz roja, por ejemplo */
+  marker-width: 20;
 }
 
-/* Bancos y cajeros */
-#tibaspois[zoom>=14][amenity="bank"],
-#tibaspois[zoom>=14][amenity="atm"] {
-  marker-width: 6;
-  marker-fill: #984ea3;      /* morado */
-  marker-line-color: #ffffff;
-  marker-line-width: 1;
+/* SALUD: clínicas / doctores / dentistas / farmacias */
+#tibaspois[zoom>=15][amenity="clinic"],
+#tibaspois[zoom>=15][amenity="doctors"],
+#tibaspois[zoom>=15][amenity="dentist"],
+#tibaspois[zoom>=15][amenity="pharmacy"] {
+  marker-file: url("icons/clinic.png");   /* otro símbolo distinto al hospital */
+  marker-width: 20;
 }
 
-/* Comercios en general (cualquier shop) */
+/* ============================
+   GASOLINERAS
+   ============================ */
+#tibaspois[zoom>=15][amenity="fuel"] {
+  marker-file: url("icons/fuel.png");
+  marker-width: 20;
+}
+
+/* ============================
+   BANCOS Y CAJEROS
+   ============================ */
+#tibaspois[zoom>=15][amenity="bank"],
+#tibaspois[zoom>=15][amenity="atm"] {
+  marker-file: url("icons/bank.png");
+  marker-width: 20;
+}
+
+/* ============================
+   COMERCIOS EN GENERAL (cualquier shop)
+   ============================ */
 #tibaspois[zoom>=15][shop!=""] {
-  marker-width: 4;
-  marker-fill: #ffcc00;      /* amarillo */
-  marker-line-color: #ffffff;
-  marker-line-width: 1;
+  marker-file: url("icons/shop.png");
+  marker-width: 20;
 }
 
-/* Etiqueta con el nombre para los POIs más importantes */
+/* Etiqueta con el nombre para TODOS los POIs con nombre */
+/* (cumple el requisito de que todos tengan etiqueta, pero solo a buen zoom) */
 #tibaspois[zoom>=17][name!=""] {
   text-name: [name];
   text-size: 9;
@@ -217,5 +236,6 @@
   text-face-name: "DejaVu Sans Book";
   text-halo-fill: #ffffff;
   text-halo-radius: 1.2;
-  text-dy: -8;
+  text-dy: -16;
 }
+
